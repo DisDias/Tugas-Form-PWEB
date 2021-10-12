@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Kuliah Tatap Muka</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+    <center>
+        <br>
+        <h2>FORM REGISTRASI KULIAH TATAP MUKA</h2>
+    </center>
+    <div class="container">
+        <form name="formPendaftaran" action="" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" name="nama" placeholder="Nama lengkap" class="form-control" required maxlength="40" minlength="3">
+            </div>
+            <div class="form-group">
+                <label>NRP</label>
+                <input type="text" name="nrp" placeholder="NRP" class="form-control" required maxlength="15" minlength="3">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email Aktif" class="form-control">
+                <small id="emailHelp" class="form-text text-muted">Email Akan Digunakan Untuk Mengirimkan Notifikasi.</small>
+            </div>
+            <div class="form-group">
+                <label>Alamat</label>
+                <input type="alamat" name="alamat" placeholder="Tempat Tinggal" class="form-control" required maxlength="100" minlength="3">
+                <small id="text" class="form-text text-muted">Isikan Tempat Tinggal Saat Ini.</small>
+            </div>
+            <div class="form-group">
+                <label>Departemen</label>
+                <select name="departemen" class="form-control">
+                        <option value="0">Pilih Departemen</option>
+                        <option value="1">Teknik Informatika</option>
+                        <option value="2">Sistem Informasi</option>
+                        <option value="3">Teknologi Informasi</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label>Vaksin</label>
+                <select name="vaksin" class="form-control">
+                        <option value="0">Pilih Status</option>
+                        <option value="1">Belum Vaksin</option>
+                        <option value="2">Vaksin Dosis 1</option>
+                        <option value="3">Vaksin Dosis 2</option>
+                </select>
+            </div>
+            <div class="form-group hidden" for="vaksin_sudah">
+                <label class="control-label" for="upload-file">Upload File Sertifikat</label>
+                <small id="uploadHelp" class="form-text text-muted">Upload sertifikat sesuai Dosis bagi yang sudah</small><br>
+                <input type="file" class="form-control-file" id="upload-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            if (document.forms["formPendaftaran"]["nama"].value == "") {
+                alert("Nama Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["nama"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["nrp"].value == "") {
+                alert("NRP Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["nrp"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["email"].value == "") {
+                alert("Email Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["email"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["alamat"].value == "") {
+                alert("Alamat Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["alamat"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["departemen"].selectedIndex < 1) {
+                alert("Pilih Departemen. Departemen tidak boleh kosong.");
+                document.forms["formPendaftaran"]["departemen"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["vaksin"].selectedIndex < 1) {
+                alert("Pilih Vaksin.");
+                document.forms["formPendaftaran"]["vaksin"].focus();
+                return false;
+            }
+
+            swal({
+                title: "Data Berhasil Tersimpan",
+                text: "Terima kasih telah mengisi form!",
+                icon: 'success',
+                
+            })
+            .then(okay => {
+                if (okay) {
+                    window.location.href = "index.html";
+                }
+            });
+
+            return false;
+        }
+    </script>
+</body>
+</html>
